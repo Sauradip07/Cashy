@@ -4,7 +4,7 @@ const express = require('express');
 const colors = require('colors');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const { errorHandler } = require('./middleware/errorHandler');
+//const { errorHandler } = require('./middleware/errorHandler');
 const fileUpload = require('express-fileupload');
 
 
@@ -14,12 +14,25 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 
-// express file uplode function temp file true 
+//express file uplode function temp file true 
 app.use(
     fileUpload({
       useTempFiles: true,
     })
 )
+
+
+//parsing incoming requests with JSON payloads.
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+//app.use(errorHandler)
+
+// app.use('/api/users', require('./routes/userRoutes'))
+// app.use('/api/', require('./routes/transactionRoutes'))
+// app.use('/api/', require('./routes/requestRoutes'))
+// app.use('/api/', require('./routes/uploadRoutes'))
+
 
 const PORT = process.env.PORT || 8080;
 
