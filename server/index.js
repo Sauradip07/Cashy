@@ -4,7 +4,7 @@ const express = require('express');
 const colors = require('colors');
 const cors = require('cors');
 const connectDB = require('./config/db');
-//const { errorHandler } = require('./middleware/errorHandler');
+const { errorHandler } = require('./middleware/errorHandler');
 const fileUpload = require('express-fileupload');
 
 
@@ -26,7 +26,7 @@ app.use(
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-//app.use(errorHandler)
+app.use(errorHandler)
 
 // app.use('/api/users', require('./routes/userRoutes'))
 // app.use('/api/', require('./routes/transactionRoutes'))
